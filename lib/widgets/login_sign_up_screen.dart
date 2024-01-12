@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FormScreen extends StatelessWidget {
-  const FormScreen({super.key, required this.hintText, required this.obscure});
+  const FormScreen({super.key, required this.hintText, required this.obscure, required this.controller});
 
   final String hintText;
   final bool obscure;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class FormScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(left: 20),
           child: TextField(
+            controller: controller,
             obscureText: obscure,
             decoration:
                 InputDecoration(border: InputBorder.none, hintText: hintText),
