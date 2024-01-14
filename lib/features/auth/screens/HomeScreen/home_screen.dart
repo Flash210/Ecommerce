@@ -1,28 +1,32 @@
 
 
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecomerce/features/auth/controllers/sign_up_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+      final controller = Get.put(SignUpController());
+
     return  Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Text("Good"),
-            Spacer(),
-            MaterialButton(
-                color: Colors.amber,
-                onPressed: (){
-              FirebaseAuth.instance.signOut();
-            })
-          ],
-        ),
+      body: Column(
+        children: [
+          const Text("Good"),
+        const SizedBox(height: 20),
+          MaterialButton(
+              child: const Text("Logout"),
+              onPressed: () {
+                controller.logoutUser();
+              }, 
+                  
+
+              )
+        ],
       ),
     );
   }

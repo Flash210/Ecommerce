@@ -3,15 +3,14 @@
 
 
 import 'package:ecomerce/features/auth/screens/HomeScreen/home_screen.dart';
-import 'package:ecomerce/features/auth/screens/SignUp/sign_up_screen.dart';
-import 'package:ecomerce/features/auth/screens/login/login_screen.dart';
 import 'package:ecomerce/features/auth/screens/welcome/welcome.dart';
-import 'package:ecomerce/repository/exceptions/signup_email_passfailure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class AuthenticationRepository {
+
+
+
 
 static AuthenticationRepository get instance => Get.find();
 
@@ -22,11 +21,13 @@ final auth=FirebaseAuth.instance;
 late final Rx<User?> firebaseUser;
 
 @override
-void onReady() {
+void onReady() {  
+  
   firebaseUser = Rx<User?>(auth.currentUser);
   firebaseUser.bindStream(auth.userChanges());
 
-  ever(firebaseUser, setInitialScreen);
+  ever(firebaseUser, setInitialScreen);     
+    
 }
 
 
@@ -45,7 +46,7 @@ Future<void> createUserWithEmailAndPassword(String email,String password) async{
   try{
     await auth.createUserWithEmailAndPassword(email: email, password: password);
 
-      firebaseUser.value!=null ? Get.offAll(() => HomeScreen()) :Get.to(() => Welcome());
+      firebaseUser.value!=null ? Get.offAll(() => const HomeScreen()) :Get.to(() => const Welcome());
 
   } catch (e){
     Get.snackbar("Error creating account", e.toString(),snackPosition: SnackPosition.BOTTOM);

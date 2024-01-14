@@ -1,5 +1,4 @@
 import 'package:ecomerce/features/auth/screens/SignUp/sign_up_screen.dart';
-import 'package:ecomerce/repository/auth_repository/auth_repository.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,11 +9,25 @@ import 'firebase_options.dart';
    WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp(
        options: DefaultFirebaseOptions.currentPlatform,
-   ).then((value) => Get.put(AuthenticationRepository()));
+   );
 
-
+ // init();
   runApp(const MyApp());
+  
 }
+
+/*
+init() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString("userID");
+  if (token != null) {
+    print('Token: $token');
+    Get.offAll(LoginScreen());
+  } else {
+    Get.offAll(HomeScreen());
+  }
+}*/
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    
 
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
