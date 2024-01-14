@@ -1,4 +1,7 @@
+import 'package:ecomerce/features/auth/screens/HomeScreen/home_screen.dart';
 import 'package:ecomerce/features/auth/screens/SignUp/sign_up_screen.dart';
+import 'package:ecomerce/features/auth/screens/login/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,13 +42,13 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Commercy',
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  SignUpScreen(),
+      home:  FirebaseAuth.instance.currentUser == null ? LoginScreen() : const HomeScreen(),
 );
 
 

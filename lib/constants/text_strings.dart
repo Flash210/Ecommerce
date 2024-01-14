@@ -1,3 +1,15 @@
+
+
+final baseUrl='https://dummyjson.com/';
+
+
+
+
+
+
+
+
+
 const String userName = "User Name";
 const String email = "Email";
 const String password = "Paswword";

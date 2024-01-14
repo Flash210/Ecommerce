@@ -2,7 +2,6 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FormScreen extends StatelessWidget {
   const FormScreen({super.key, required this.hintText, required this.obscure, required this.controller});
