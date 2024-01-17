@@ -1,41 +1,40 @@
-import 'package:dio/dio.dart';
-import 'package:ecomerce/constants/text_strings.dart';
+import 'dart:convert';
 import 'package:ecomerce/features/auth/models/product.dart';
+import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String apiUrl = 'products/';
+  static const String apiUrl = 'https://dummyjson.com/products';
+Future<List<Products>> fetchProducts() async {
+  try {
+    http.Response response = await http.get(Uri.parse(apiUrl));
 
-  late Dio dio;
-
-  ApiService() {
-    BaseOptions options = BaseOptions(
-      baseUrl: baseUrl,
-      receiveDataWhenStatusError: true,
-      connectTimeout: Duration(seconds: 20),
-      receiveTimeout: Duration(seconds: 20),
-    );
-
-    dio = Dio(options);
-  }
-
-  Future<List<Products>> fetchProducts() async {
-    try {
-      Response response = await dio.get(apiUrl);
-      var data = response.data;
-
+    if (response.statusCode == 200) {
       List<Products> listOfProducts = [];
 
-      if (response.statusCode == 200) {
-        for (var i in data) {
+      var body = json.decode(response.body);
+
+      if (body is List) {
+        // If the response is a list, iterate over it
+        for (var i in body) {
           listOfProducts.add(Products.fromJson(i));
         }
-        return listOfProducts;
-      } else {
-        throw Exception('Failed to load products. Status code: ${response.statusCode}');
+      } else if (body is Map && body.containsKey('images')) {
+        // If the response is a map and contains 'images', extract and iterate over it
+        var images = body['images'];
+        if (images is List) {
+          for (var i in images) {
+            listOfProducts.add(Products.fromJson(i));
+          }
+        }
       }
-    } catch (e) {
-      print('Error: $e');
-      return [];
+
+      return listOfProducts;
+    } else {
+      throw Exception('Failed to load products. Status code: ${response.statusCode}');
     }
+  } catch (e) {
+    print('Error: $e');
+    return [];
   }
+}
 }

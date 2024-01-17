@@ -1,5 +1,4 @@
 import 'package:ecomerce/features/auth/screens/HomeScreen/home_screen.dart';
-import 'package:ecomerce/features/auth/screens/SignUp/sign_up_screen.dart';
 import 'package:ecomerce/features/auth/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

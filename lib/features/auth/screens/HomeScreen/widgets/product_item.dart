@@ -5,16 +5,14 @@ import 'package:flutter/material.dart';
 class ProductItem extends StatelessWidget {
   final Products product;
 
-  ProductItem({required this.product});
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListTile(
-        title: Text( product.title.toString()),
-        subtitle: Text(product.price.toString()),
-        trailing: Text('\$${product.price.toString()}'),
-      ),
+    return ListTile(
+      title: Text( product.title.toString()),
+      subtitle: Text(product.price.toString()),
+      trailing: Text('\$${product.price.toString()}'),
     );
   }
 }

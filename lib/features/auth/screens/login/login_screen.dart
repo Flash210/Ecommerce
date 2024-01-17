@@ -8,12 +8,13 @@ import 'package:ecomerce/features/auth/controllers/sign_up_controller.dart';
 import 'package:ecomerce/features/auth/screens/SignUp/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class LoginScreen extends StatelessWidget {
 
   final controller = Get.put(SignUpController());
 final formKey=GlobalKey<FormState>();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +34,13 @@ final formKey=GlobalKey<FormState>();
               const SizedBox(height: 16.0),
                TextField(
                 controller: controller.loginEmailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16.0),
                TextField(
               controller: controller.loginPasswordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
               ),
               const SizedBox(height: 16.0),

@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatelessWidget {
@@ -13,7 +11,7 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.grey[200], borderRadius: BorderRadius.circular(13)),

@@ -37,7 +37,7 @@ void onReady() {
 
 setInitialScreen(User? user){
 
-user== null ? Get.offAll(() => Welcome()) :Get.offAll(() => HomeScreen());
+user== null ? Get.offAll(() => const Welcome()) :Get.offAll(() => const HomeScreen());
 
 }
 
